@@ -75,6 +75,10 @@ services:
           fi
         done;
         echo "sites/common_site_config.json found";
+        if [ -d sites/frontend ]; then
+          echo "Site frontend already exists. Skipping new-site.";
+          exit 0;
+        fi;
         bench new-site --mariadb-user-host-login-scope='%' --admin-password=admin --db-root-username=root --db-root-password=admin --install-app erpnext --set-default frontend;
 
   db:
